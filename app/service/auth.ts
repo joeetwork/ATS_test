@@ -1,4 +1,4 @@
-import { AuthTypes } from '../types/auth';
+import { AuthTypes } from '../types/service/auth';
 
 export const Auth = async () => {
     const formData = new URLSearchParams();

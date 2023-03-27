@@ -1,9 +1,5 @@
-import { Inter } from 'next/font/google';
-import { FeedbackList } from './components/feedbackList';
+import { FeedbackContent } from './components/feedbackContent';
 import { Auth } from './service/auth';
-import { Feedback } from './service/feedback';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default async function Home() {
     const auth = await Auth();
@@ -11,8 +7,7 @@ export default async function Home() {
     return (
         <div>
             <div>Account: {auth.userName}</div>
-            {/* @ts-expect-error Async Server Component */}
-            <FeedbackList />
+            <FeedbackContent />
         </div>
     );
 }

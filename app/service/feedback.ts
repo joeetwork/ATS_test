@@ -1,7 +1,24 @@
-import { FeedbackTypes } from '../types/feedback';
+import { FeedbackDataTypes } from '../types/service/feedback';
 import { Auth } from './auth';
 
-export const Feedback = async () => {
+export const Feedback = async (start?: Date, end?: Date) => {
+    let startFormat;
+    let endFormat;
+
+    if (start) {
+        const year = start.getFullYear();
+        const month = String(start.getMonth() + 1).padStart(2, '0');
+        const day = String(start.getDate()).padStart(2, '0');
+        startFormat = `${year}-${month}-${day}`;
+    }
+
+    if (end) {
+        const year = end.getFullYear();
+        const month = String(end.getMonth() + 1).padStart(2, '0');
+        const day = String(end.getDate()).padStart(2, '0');
+        endFormat = `${year}-${month}-${day}`;
+    }
+
     const auth = await Auth();
 
     const requestFeedback = {
@@ -13,11 +30,11 @@ export const Feedback = async () => {
     };
 
     const dataFeedback = await fetch(
-        "https://api.ats-workspace.com/dailyLogs/app.getAggregatedReviews(siteId=21,start='2020-01-01',end='2020-02-01')",
+        `https://api.ats-workspace.com/dailyLogs/app.getAggregatedReviews(siteId=21,start='${startFormat}',end='${endFormat}')`,
         requestFeedback
     );
 
-    const resFeedback = (await dataFeedback.json()) as FeedbackTypes;
+    const resFeedback = (await dataFeedback.json()) as FeedbackDataTypes;
 
     return resFeedback;
 };
