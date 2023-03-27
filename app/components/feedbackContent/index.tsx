@@ -35,8 +35,6 @@ export const FeedbackContent = () => {
         fetchData();
     }, [start, end]);
 
-    console.log(start);
-
     return (
         <>
             <FeedbackCalander
