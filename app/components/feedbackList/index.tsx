@@ -4,7 +4,7 @@ export const FeedbackList = ({ feedback }: FeedbackListProps) => {
     return (
         <div>
             <div className='text-yellow-700 text-3xl font-bold text-center py-4'>
-                Feedback from January 2020
+                Feedback List
             </div>
             <ul className='flex flex-col text-center'>
                 {feedback &&
